@@ -13,11 +13,14 @@ class MapRestaurantAdapter: RecyclerView.Adapter<MapRestaurantAdapter.Restaurant
 
     private val items = ArrayList<MapPlace>()
 
-    fun load(payload: List<MapPlace>?) {
-        payload?.let {
-            items.addAll(payload)
-            notifyDataSetChanged()
-        }
+    fun load(payload: List<MapPlace>) {
+        items.addAll(payload)
+        notifyDataSetChanged()
+    }
+
+    fun getItem(pos: Int): MapPlace? {
+        if(pos < 0 || pos >= items.size) return null
+        return items[pos]
     }
 
     override fun onCreateViewHolder(root: ViewGroup, type: Int): RestaurantViewHolder {
